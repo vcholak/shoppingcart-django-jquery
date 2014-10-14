@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 # not reachable
 def home(request):
-    return HttpResponse()
+    return HttpResponse('<html><title>Sport Products App</title></html>')
     #return redirect('/index.html')
 
 

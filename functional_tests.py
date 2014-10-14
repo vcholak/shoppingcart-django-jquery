@@ -3,9 +3,6 @@ __author__ = 'vcholak'
 from selenium import webdriver
 import unittest
 
-browser = webdriver.Firefox()
-browser.get('http://localhost:8000')
-
 
 class NewVisitorTest(unittest.TestCase):
 
@@ -20,17 +17,17 @@ class NewVisitorTest(unittest.TestCase):
         """
         self.browser.quit()
 
-    def test_can_start_a_list_and_retrieve_it_later(self):
+    def test_home_view(self):
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
         self.browser.get('http://localhost:8000')
 
         # She notices the page title and header mention to-do lists
-        self.assertIn('Products App', self.browser.title)
-
+        self.assertIn('Sport Products App', self.browser.title)
 
         # She is invited to enter a to-do item straight away
-        self.fail('Finish the test!')
+        self.fail('Finish the FT test!')
+
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
