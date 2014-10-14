@@ -5,7 +5,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'sports.views.home', name='home'),
+    url(r'^$', 'sports.views.home', name='home'),  # matches to '/' URL
     # url(r'^blog/', include('blog.urls')),
 
     #url(r'^$', 'django.contrib.staticfiles.views.serve', kwargs={

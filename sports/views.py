@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django import HttpResponse
+from django.http import HttpResponse
 #from sports.models import Product
 
 # Create your views here.
