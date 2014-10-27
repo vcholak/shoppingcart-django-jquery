@@ -1,4 +1,14 @@
-Simple Django application for Python 3.
+Cart Application
+================
+
+
+Implementation
+--------------
+
+The application is implemented using Python 3, Django 1.7 and jQuery 2.
+
+Data Storage
+------------
 
 For data storage it uses MySQL.
 
@@ -8,9 +18,16 @@ Solution is to use PyMySQL driver, but Django only officially supports MySQLdb.
 
 To allow Django use PyMySQL, make a simple patch to your manage.py file:
 
-#!/usr/bin/env python
-+try:
-+    import pymysql
-+    pymysql.install_as_MySQLdb()
-+except ImportError:
-+    pass 
+    + try:    
+    +     import pymysql    
+    +     pymysql.install_as_MySQLdb()    
+    + except ImportError:    
+    +     pass         
+
+
+Django admin setup
+------------------
+
+To define the superuser, run:
+
+>python manage.py syncdb 

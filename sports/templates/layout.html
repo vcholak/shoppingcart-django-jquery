@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Products Store</title>
+    <link href="/static/bootstrap.css" rel="stylesheet" media="screen" />
+    <link href="/static/bootstrap-theme.css" rel="stylesheet" media="screen" />
+    <link href="/static/layout.css" rel="stylesheet" media="screen" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="/static/cart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row" id="header-row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="text-center">
+                    <h1>{% block header_text %}{% endblock %}</h1>
+                    {% block cart_summary %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

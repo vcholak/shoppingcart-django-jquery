@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block header_text %}PRODUCTS STORE{% endblock %}
+
+{% block cart_summary %}
+    <div class="navbar-right">
+        <div class="navbar-text">
+                        <b>Your cart:</b>
+                        <span id="cart-item-count">0</span> item(s),
+                        $<span id="cart-total">0.00</span>
+        </div>
+        <a id="cart-checkout" href="#" class="btn btn-default navbar-btn">Checkout</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <table id="product-list" class="table">
+        <tr>
+            <th></th><th>Name</th><th>Description</th><th>Category</th><th>Price</th><th></th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.price }}</td>
+                <td><a href="#" class="btn btn-default add-item" >Add to cart</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div id="cart-summary" style="display: none;">
+        <h1>Your cart</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Item</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="cart-summary-tbody"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td id="cart-summary-total" class="text-right"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="text-center">
+            <a id="continue-shopping" class="btn btn-primary" href="#">Continue shopping</a>
+            <a id="show-place-order" class="btn btn-primary" href="#">Place order now</a>
+        </div>
+    </div>
+
+    <div id="place-order" style="display: none;">
+        <h2>Check out now</h2>
+        <p>Please enter your details, and we'll ship your goods right away!</p>
+
+        <form id="order-form">
+            {% csrf_token %}
+            <div class="well">
+                <h3>Ship to</h3>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input name="fname" type="text" class="form-control" required autofocus />
+                </div>
+
+                <h3>Address</h3>
+                <div class="form-group">
+                    <label>Street Address</label>
+                    <input name="street" type="text" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>City</label>
+                    <input name="city" type="text" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>State</label>
+                    <input name="state" type="text" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Zip</label>
+                    <input name="zip" type="text" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Country</label>
+                    <input name="country" type="text" class="form-control" required />
+                </div>
+
+                <h3>Options</h3>
+                <div class="checkbox">
+                    <label>
+                        <input name="giftwrap" type="checkbox" />
+                        Gift wrap these items
+                    </label>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Complete order</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="well" id="order-completed" style="display: none;">
+        <h2>Thanks!</h2>
+        <p>Thanks for placing your order. We'll ship your goods as soon as possible.</p>
+        <p>If you need to contact us, use reference # <span id="order-no"></span>.</p>
+    </div>
+
+    <div id="to-catalogue" class="text-center" style="display: none;">
+        <button class="btn btn-primary">Return to the catalogue</button>
+    </div>
+{% endblock %}

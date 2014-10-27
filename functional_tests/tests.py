@@ -1,10 +1,14 @@
 __author__ = 'vcholak'
 
+# LiveServerTestCase will automatically create a test database,
+# and start up a development server for the functional tests to run against.
+# StaticLiveServerTestCase additionally can find static files as well.
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-import unittest
+from selenium.webdriver.common.keys import Keys
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -18,16 +22,6 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.quit()
 
     def test_home_view(self):
-        # Edith has heard about a cool new online to-do app. She goes
-        # to check out its homepage
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
-        # She notices the page title and header mention to-do lists
-        self.assertIn('Sport Products App', self.browser.title)
-
-        # She is invited to enter a to-do item straight away
-        self.fail('Finish the FT test!')
-
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+        self.assertIn('Products Store', self.browser.title)
